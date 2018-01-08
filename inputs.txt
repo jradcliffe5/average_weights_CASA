@@ -1,0 +1,3 @@
+## Input file for the average weight table
+measurement_set = ['JVLA1_small_data.ms']
+casa_path = ''

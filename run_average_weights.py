@@ -37,3 +37,5 @@ for i in measurement_set:
     antennaindex = pd.DataFrame({'ANT1_idx':np.array(antenna1index),'ANT2_idx':np.array(antenna2index)})
 
     pd.concat([df, antennaindex],axis=1).to_csv('%s_av_wt.csv' % i.split('.ms')[0],index=False)
+    os.system('rm weights.npy')
+    os.system('rm baseline_distribution.npy')

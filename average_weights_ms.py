@@ -20,10 +20,12 @@ msfile2_wt_sum = np.sum(tb.getcol('WEIGHT_SPECTRUM'))
 def pull_baselines(msfile):
     baseline_distribution = []
     t = tbtool()
+    print 'Opening %s' % msfile
     t.open(msfile, nomodify=False)
     for colname in ['ANTENNA1']:
         if (colname in t.colnames()) and (t.iscelldefined(colname,0)):
             for j in xrange(0,t.nrows()):
+                print '%d/%d' % (j,t.nrows())
                 a = [t.getcell(colname, j)]+[t.getcell('ANTENNA2', j)]
                 if (a not in baseline_distribution) == True:
                     baseline_distribution = baseline_distribution + [a]
@@ -49,9 +51,11 @@ weight_table = np.append(baseline_distribution,np.zeros((baseline_distribution.s
 
 np.save('baseline_distribution.npy',baseline_distribution)
 t.open(theconcatvis, nomodify=False)
+print 'Finding weights'
 for colname in ['WEIGHT','WEIGHT_SPECTRUM']:
     if (colname in t.colnames()) and (t.iscelldefined(colname,0)):
         for j in xrange(0,t.nrows()):
+            print '%d/%d' % (j,t.nrows())
             a = t.getcell(colname, j)
             flags = t.getcell('FLAG', j)
             if colname == 'WEIGHT':

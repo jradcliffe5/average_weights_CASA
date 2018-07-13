@@ -84,10 +84,10 @@ for colname in ['WEIGHT','WEIGHT_SPECTRUM']:
     print 'Finding averages from the %s column' % colname
     if (colname in t.colnames()) and (t.iscelldefined(colname,0)):
         for j in xrange(0,t.nrows()):
-            if ((j+1) % 10000 == 0):
-                print '%d/%d' % (j+1,(t.nrows()))
-            if (j+1==(t.nrows())):
-                print '%d/%d ... Complete' % (j+1,t.nrows())
+            #if ((j+1) % 10000 == 0):
+            #    print '%d/%d' % (j+1,(t.nrows()))
+            #if (j+1==(t.nrows())):
+            #    print '%d/%d ... Complete' % (j+1,t.nrows())
             a = t.getcell(colname, j)
             flags = t.getcell('FLAG', j)
             if colname == 'WEIGHT':
